@@ -13,6 +13,7 @@ if qtd_argumentos <= 1:
     print("-d", "para listar todos os diretórios", sep="\t")
     print("-all", "para listar todos tudo", sep="\t")
     sys.exit()
+    #
 
 so_arquivos = False
 so_diretorios = False
