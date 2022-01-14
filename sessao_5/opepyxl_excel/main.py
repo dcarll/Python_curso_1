@@ -1,87 +1,93 @@
-'''
-#FIFO : First In First Out
+import openpyxl as excel
+import pandas as pd
+from random import uniform
 
-livros = list()
-livros.append('livro1')
-livros.append('livro2')
-livros.append('livros3')
-livros.append('livros4')
-livros.append('livros5')
+pedido = excel.load_workbook('pedidos.xlsx')
+planilhas = pedido.sheetnames
+# print(planilhas)
 
-print(livros)
+planilhaas = pedido['Página1']
+# print(planilha1['b4'].value)
 
-#remove o úçtimo livro da pilha [lista]
-remove_livro = livros.pop() #5
-remove_livro = livros.pop() #4
-remove_livro = livros.pop() #3
-remove_livro = livros.pop() #2
-remove_livro = livros.pop() #1
-print(f'livros: {str(livros)})')
-print(f'Livros removido: {remove_livro}')
-print(f'Livros restantes: {livros}')
-'''
-
-# FILA : Firts In Last Out
-from collections import deque
+tabela = pd.read_excel('pedidos.xlsx')
 
 """
-fila = deque()
-print(fila)
-fila.append('Joãozinho')
-fila.append('Marcos')
-fila.append('Diego')
-
-for nome in fila:
-  print(nome, end=' --- ')
-
-print()
-print("-"*50)
-print(f'{fila.popleft()} saiu da fila')
-for nome in fila:
-  print(nome, end=' --- ')
-"""
-
-"""
-fila = deque(maxlen=5)
-fila.append("Diego")
-fila.append("João")
-fila.append("Jacira")
-fila.append("joniscleide")
-fila.append("Donizete")
+#acessa todos os valores da coluna 'b'
+for campo in planilha1['b']:
+  print(campo.value)
 """
 """
-#outra forma de adicionara valores na fila
-fila = deque(maxlen=5)
-fila.extend(['Diego', 'João', 'José', 'Jacira', 'Tarcisio' ])
+#acessa range de a1 até c2, por exemplo
+
+for linha in planilha1['a1:c2']:
+  for coluna in linha:
+    print(coluna.value)
+"""
+"""
+for linha in planilha1:
+  if linha[0].value is not None:
+    print(linha[0].value, end=' ')
+
+  if linha[1].value is not None:
+    print(linha[1].value, end=' ')
+
+  if linha[2].value is not None:
+    print(linha[2].value)
+
+"""
+"""
+#alterar valores da planilha sem alterar o valor da planilha original
+
+print(planilha1['B3'].value)
+
+planilha1['B3'].value = 2200  
+
+print(planilha1['B3'].value)
+
+print(tabela)
+tabela2 = pd.read_excel('nova_planilha.xlsx')
+
+print("-"*65)
+
+aux = 3
+for linha in range(5, 16):
+
+  planilha1.cell(linha, 1).value = aux + 1
+  planilha1.cell(linha, 2).value = 1200 + linha
+
+  preco = round(uniform(10, 100), 2)
+  planilha1.cell(linha, 3).value = preco
+pedido.save('nova_planilha.xlsx')
+print(tabela2)
 
 """
 
-# Se definir um tamnaho máximo para a fila, quando é #adicionado outro valor e supere o liimite da fila, #o primeira da lista é removido e para entar o #útimo"""
-"""
-fila.append('Donizete')
+planilha = excel.Workbook()
+planilha.create_sheet('Planilha1', 0)
+planilha.create_sheet('Planilha2', 1)
 
+planilha1 = planilha['Planilha1']
+planilha2 = planilha['Planilha2']
 
-for i, nome in enumerate(fila):
-  print(i, nome)
-"""
+aux = 0
+for linha in range(1, 11):
+    numero_peido = linha - 1
 
-from time import sleep
+    planilha1.cell(linha, 1).value = numero_peido
+    planilha1.cell(linha, 2).value = 1200 + linha
 
-fila = deque(maxlen=10)
+    preco = round(uniform(10, 100), 2)
+    planilha1.cell(linha, 3).value = preco
+for linha in range(1, 11):
+    planilha2.cell(linha, 1).value = f'Diego {linha} round(uniform(10,100)2)'
+    planilha2.cell(linha, 2).value = f'José {linha} round(uniform(10,100)2)'
 
-fila.extend(['Diego', 'Suzane', 'Xafu', 'Fornio'])
-for i, nome in enumerate(fila):
-    print(i, nome)
+planilha.save("nova_planilha2.xlsx")
 
-print('-' * 50)
-fila.insert(2, 'Xafu de Cornio')
-for i, nome in enumerate(fila):
-    print(i, nome)
+tabela2 = pd.read_excel("nova_planilha2.xlsx")
+print(tabela2)
 
-"""
-for i in range(1000):
-  fila.append(i)
-  print(fila)
+tabela3 = pd.read_excel('nova_planilha2.xlsx', sheet_name='Planilha2')
 
-  sleep(1)
-"""
+print('Planilha 2')
+print(tabela3[::])
