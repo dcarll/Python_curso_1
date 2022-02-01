@@ -16,7 +16,7 @@ with open('template.html', 'r') as html:
 msg = MIMEMultipart()
 msg['from']= 'Diego Carlos da Silva'
 msg['to']= 'dcarloss111@gmail.com' #esse será o e-mail destino
-msg['subject']= 'Atenção: este é um e-mail de teste'
+msg['subject']= 'Atenção: este é um e-mail de funcoes1'
 
 corpo = MIMEText(corpo_msg, 'html')
 msg.attach(corpo)
@@ -52,7 +52,7 @@ with open('template.html', 'r') as html:
 msg = MIMEMultipart()
 msg['from'] = 'Diego'
 msg['to'] = 'diego_carlos110@hotmail.com'  # Cliente
-msg['subject'] = 'Atenção: este é um e-mail de teste'
+msg['subject'] = 'Atenção: este é um e-mail de funcoes1'
 
 corpo = MIMEText(corpo_msg, 'html')
 msg.attach(corpo)

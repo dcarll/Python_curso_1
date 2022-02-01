@@ -26,7 +26,7 @@ class Tela:
                                               title='Selecione um arquivo',
                                               filetypes=(('Arquivos de texto', '*.txt'),
                                                         ('Arqvuivos Python', '*.py')),
-                                                   initialfile='teste.txt')
+                                                   initialfile='funcoes1.txt')
         print(self.arquivo2)
 
     '''      
