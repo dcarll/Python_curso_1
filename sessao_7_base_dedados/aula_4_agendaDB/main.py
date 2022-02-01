@@ -38,7 +38,7 @@ class AgendaBD():
             id, nome, telefone = linha
             print(f'ID: {id}\t',
                   f'Nome: {nome}\t',
-                  f'\tTelefone: {telefone}')
+                  f'\tTelefone : {telefone}')
 
 
     def fechar(self):
